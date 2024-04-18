@@ -1,17 +1,15 @@
-import React from 'react';
-import {
-  SafeAreaView
-} from 'react-native';
-import HomePage from './screens/HomePage/HomePage';
 
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-function App(): React.JSX.Element {
+import Navigation from "./navigation";
+import { StatusBar } from "react-native";
+
+export default function App() {
+
   return (
-    <SafeAreaView >
-      <HomePage />
-    </SafeAreaView >
+    <SafeAreaProvider>
+      <Navigation />
+      <StatusBar />
+    </SafeAreaProvider>
   );
 }
-
-
-export default App;
