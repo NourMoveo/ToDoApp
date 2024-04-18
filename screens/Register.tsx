@@ -47,7 +47,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                             textAlign: "center",
                         }}
                     >
-                        Create an account so you can explore all the existing jobs
+                        Sign up to unlock access and explore all your to-do list features
                     </Text>
                 </View>
                 <View
