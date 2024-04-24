@@ -3,14 +3,13 @@ import {
     Dimensions,
     FlatList,
     Image,
-    ImageBackground,
     SafeAreaView,
     StatusBar,
     StyleSheet,
     Text,
-    TouchableHighlight,
     TouchableOpacity,
     View,
+    ScrollView,
 } from "react-native";
 
 import Spacing from "../constants/Spacing";
@@ -19,12 +18,12 @@ import Colors from "../constants/Colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 import Tasks from "../mockData/Tasks";
-import { ScrollView } from "react-native-gesture-handler";
-
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomTabsNavigator } from "../navigation";
 const { height, width } = Dimensions.get("window");
 
 type Props = NativeStackScreenProps<RootStackParamList, "Tasks">;
-
+const Tab = createBottomTabNavigator();
 const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
     const styles = StyleSheet.create({
         container: {
@@ -175,117 +174,124 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
             borderWidth: 3,
             justifyContent: 'center',
             alignItems: 'center'
-
-        }
+        }, tabsText: {
+            fontFamily: "poppins-semiBold",
+            fontSize: FontSize.medium,
+            maxWidth: "50%",
+            textAlign: "left",
+        },
     });
+
+
 
     return (
         <View style={styles.container}>
             <StatusBar />
             <SafeAreaView style={styles.safeAreaView}>
-                <View style={styles.headerContainer}>
-                    <View style={styles.headerRow}>
-                        <TouchableOpacity
-                            onPress={() => navigate("Login")}
-                            style={[styles.menuButton, { borderWidth: 1, borderRadius: 15 }]}
-                        >
+                <ScrollView>
+                    <View style={styles.headerContainer}>
+                        <View style={styles.headerRow}>
+                            <TouchableOpacity
+                                onPress={() => navigate("Login")}
+                                style={[styles.menuButton, { borderWidth: 1, borderRadius: 15 }]}
+                            >
+                                <Image
+                                    source={require("../photos/icons/Menu.png")}
+                                    style={{ height: height / 50, width: width / 20 }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigate("Login")}>
+                                <Image
+                                    source={require("../photos/Tasks/UserProfile.jpeg")}
+                                    style={styles.userProfileButton}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.contentContainer}>
+                            <Text style={styles.contentText}>Manage your time well</Text>
                             <Image
-                                source={require("../photos/MenuIcon.png")}
-                                style={{ height: height / 50, width: width / 20 }}
+                                source={require("../photos/icons/WhiteArrow.png")}
+                                style={styles.contentArrowImage}
                             />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigate("Login")}>
                             <Image
-                                source={require("../photos/UserProfile.jpeg")}
-                                style={styles.userProfileButton}
+                                source={require("../photos/icons/Documents.png")}
+                                style={styles.contentDocumentImage}
                             />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.contentContainer}>
-                        <Text style={styles.contentText}>Manage your time well</Text>
-                        <Image
-                            source={require("../photos/WhiteArrow.png")}
-                            style={styles.contentArrowImage}
-                        />
-                        <Image
-                            source={require("../photos/Documents.png")}
-                            style={styles.contentDocumentImage}
-                        />
-                    </View>
-                    <View style={styles.categoriesContainer}>
-                        <Text style={styles.categoriesTitle}>Categories</Text>
-                        <View style={{ flexDirection: "row", marginTop: Spacing * 2, gap: width / 25 }}>
-                            <View>
-                                <View style={styles.categoryButton}>
-                                    <Image
-                                        source={require("../photos/Work.png")}
-                                        style={{ height: height / 23, width: width / 10, opacity: 0.8 }}
-                                    />
+                        </View>
+                        <View style={styles.categoriesContainer}>
+                            <Text style={styles.categoriesTitle}>Categories</Text>
+                            <View style={{ flexDirection: "row", marginTop: Spacing * 2, gap: width / 25 }}>
+                                <View>
+                                    <View style={styles.categoryButton}>
+                                        <Image
+                                            source={require("../photos/icons/Work.png")}
+                                            style={{ height: height / 23, width: width / 10, opacity: 0.8 }}
+                                        />
+                                    </View>
+                                    <Text style={styles.categoryText}>Work</Text>
                                 </View>
-                                <Text style={styles.categoryText}>Work</Text>
-                            </View>
-                            <View>
-                                <View style={styles.categoryButton}>
-                                    <Image
-                                        source={require("../photos/Personal.png")}
-                                        style={{ height: height / 23, width: width / 9.2, opacity: 0.8 }}
-                                    />
+                                <View>
+                                    <View style={styles.categoryButton}>
+                                        <Image
+                                            source={require("../photos/icons/Personal.png")}
+                                            style={{ height: height / 23, width: width / 9.2, opacity: 0.8 }}
+                                        />
 
+                                    </View>
+                                    <Text style={styles.categoryText}>Personal</Text>
                                 </View>
-                                <Text style={styles.categoryText}>Personal</Text>
-                            </View>
-                            <View>
-                                <View style={styles.categoryButton}>
-                                    <Image
-                                        source={require("../photos/Shopping.png")}
-                                        style={{ height: height / 25, width: width / 10, opacity: 0.8 }}
-                                    />
+                                <View>
+                                    <View style={styles.categoryButton}>
+                                        <Image
+                                            source={require("../photos/icons/Shopping.png")}
+                                            style={{ height: height / 25, width: width / 10, opacity: 0.8 }}
+                                        />
+                                    </View>
+                                    <Text style={styles.categoryText}>Shopping</Text>
                                 </View>
-                                <Text style={styles.categoryText}>Shopping</Text>
-                            </View>
-                            <View>
-                                <View style={styles.categoryButton}>
-                                    <Image
-                                        source={require("../photos/Health.png")}
-                                        style={{ height: height / 25, width: width / 10, opacity: 0.8 }}
-                                    />
+                                <View>
+                                    <View style={styles.categoryButton}>
+                                        <Image
+                                            source={require("../photos/icons/Health.png")}
+                                            style={{ height: height / 25, width: width / 10, opacity: 0.8 }}
+                                        />
+                                    </View>
+                                    <Text style={styles.categoryText}>Health</Text>
                                 </View>
-                                <Text style={styles.categoryText}>Health</Text>
                             </View>
                         </View>
-                    </View>
-                    <Text style={styles.tasksCountText}>You have 10 tasks for today</Text>
-                    <View style={{ marginTop: width / 20 }}>
-                        <FlatList
-                            data={Tasks.sort((a, b) => a.time - b.time)}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item, index }) => (
-                                <View style={styles.taskTextContainer}>
-                                    <View style={{ display: "flex", flexDirection: "row", gap: width / 20 }}>
-                                        <TouchableOpacity style={styles.radioButton} onPress={() => !item.done}>
-                                            {item.done && <View style={[styles.radioButton, {
-                                                width: Dimensions.get('window').width * 0.015,
-                                                height: Dimensions.get('window').width * 0.015,
-                                                backgroundColor: Colors.textBackground,
-                                                justifyContent: 'center',
-                                                alignItems: 'center'
-                                            }]} />}
-                                        </TouchableOpacity>
-                                        <Text style={[styles.taskText, item.done && { textDecorationLine: "line-through" }]}>
-                                            {item.task.length > width / 20 ? item.task.substring(0, width / 20) + '...' : item.task}
-                                        </Text>
+                        <Text style={styles.tasksCountText}>You have 10 tasks for today</Text>
+                        <View style={{ marginTop: width / 20 }}>
+                            <FlatList
+                                data={Tasks.sort((a, b) => Number(a.time) - Number(b.time))}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={({ item, index }) => (
+                                    <View style={styles.taskTextContainer}>
+                                        <View style={{ display: "flex", flexDirection: "row", gap: width / 20 }}>
+                                            <TouchableOpacity style={styles.radioButton} onPress={() => !item.done}>
+                                                {item.done && <View style={[styles.radioButton, {
+                                                    width: Dimensions.get('window').width * 0.015,
+                                                    height: Dimensions.get('window').width * 0.015,
+                                                    backgroundColor: Colors.textBackground,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center'
+                                                }]} />}
+                                            </TouchableOpacity>
+                                            <Text style={[styles.taskText, item.done && { textDecorationLine: "line-through" }]}>
+                                                {item.task.length > width / 20 ? item.task.substring(0, width / 20) + '...' : item.task}
+                                            </Text>
+                                        </View>
+                                        <Text style={styles.taskText}>{item.time.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</Text>
                                     </View>
-                                    <Text style={styles.taskText}>{item.time.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</Text>
-                                </View>
-                            )}
-                        />
-                    </View>
-                </View >
-                <View style={{ backgroundColor: Colors.darkText, height: height / 10, width: "100%", zIndex: 9 }}>
-
-                </View>
+                                )}
+                            />
+                        </View>
+                    </View >
+                </ScrollView>
             </SafeAreaView >
+            {/* {BottomTabsNavigator()} */}
         </View >
+
     );
 };
 

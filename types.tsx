@@ -11,6 +11,9 @@ export type RootStackParamList = {
     Login: undefined;
     Register: undefined;
     Tasks: undefined;
+    AddTask: undefined;
+    Settings: undefined;
+    SettingsDetails: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

@@ -27,7 +27,7 @@ const HomePage: React.FC<Props> = ({ navigation: { navigate } }) => {
                         height: height / 2.5,
                     }}
                     resizeMode="contain"
-                    source={require("../photos/HomePage.png")}
+                    source={require("../photos/HomePage/Hero.png")}
                 />
                 <View
                     style={{
