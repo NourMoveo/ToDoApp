@@ -8,7 +8,7 @@ import {
     View,
 } from "react-native";
 import React from "react";
-
+import Photos from "../constants/Photos";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
@@ -27,7 +27,7 @@ const HomePage: React.FC<Props> = ({ navigation: { navigate } }) => {
                         height: height / 2.5,
                     }}
                     resizeMode="contain"
-                    source={require("../photos/HomePage/Hero.png")}
+                    source={Photos.HomePageHero}
                 />
                 <View
                     style={{

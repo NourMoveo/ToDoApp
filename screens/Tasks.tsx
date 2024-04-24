@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Dimensions,
     FlatList,
@@ -15,6 +15,7 @@ import {
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
+import Photos from "../constants/Photos";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 import Tasks from "../mockData/Tasks";
@@ -192,17 +193,17 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                     <View style={styles.headerContainer}>
                         <View style={styles.headerRow}>
                             <TouchableOpacity
-                                onPress={() => navigate("Login")}
+                                onPress={() => navigate("Home")}
                                 style={[styles.menuButton, { borderWidth: 1, borderRadius: 15 }]}
                             >
                                 <Image
-                                    source={require("../photos/icons/Menu.png")}
+                                    source={Photos.MenuIcon}
                                     style={{ height: height / 50, width: width / 20 }}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigate("Login")}>
                                 <Image
-                                    source={require("../photos/Tasks/UserProfile.jpeg")}
+                                    source={Photos.UserProfile}
                                     style={styles.userProfileButton}
                                 />
                             </TouchableOpacity>
@@ -210,11 +211,11 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                         <View style={styles.contentContainer}>
                             <Text style={styles.contentText}>Manage your time well</Text>
                             <Image
-                                source={require("../photos/icons/WhiteArrow.png")}
+                                source={Photos.WhiteArrowIcon}
                                 style={styles.contentArrowImage}
                             />
                             <Image
-                                source={require("../photos/icons/Documents.png")}
+                                source={Photos.DocumentIcon}
                                 style={styles.contentDocumentImage}
                             />
                         </View>
@@ -224,7 +225,7 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                                 <View>
                                     <View style={styles.categoryButton}>
                                         <Image
-                                            source={require("../photos/icons/Work.png")}
+                                            source={Photos.WorkIcon}
                                             style={{ height: height / 23, width: width / 10, opacity: 0.8 }}
                                         />
                                     </View>
@@ -233,7 +234,7 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                                 <View>
                                     <View style={styles.categoryButton}>
                                         <Image
-                                            source={require("../photos/icons/Personal.png")}
+                                            source={Photos.PersonalIcon}
                                             style={{ height: height / 23, width: width / 9.2, opacity: 0.8 }}
                                         />
 
@@ -243,7 +244,7 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                                 <View>
                                     <View style={styles.categoryButton}>
                                         <Image
-                                            source={require("../photos/icons/Shopping.png")}
+                                            source={Photos.ShoppingIcon}
                                             style={{ height: height / 25, width: width / 10, opacity: 0.8 }}
                                         />
                                     </View>
@@ -252,7 +253,7 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                                 <View>
                                     <View style={styles.categoryButton}>
                                         <Image
-                                            source={require("../photos/icons/Health.png")}
+                                            source={Photos.HealthIcon}
                                             style={{ height: height / 25, width: width / 10, opacity: 0.8 }}
                                         />
                                     </View>
@@ -260,7 +261,7 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                                 </View>
                             </View>
                         </View>
-                        <Text style={styles.tasksCountText}>You have 10 tasks for today</Text>
+                        <Text style={styles.tasksCountText}>You have 5 tasks for today</Text>
                         <View style={{ marginTop: width / 20 }}>
                             <FlatList
                                 data={Tasks.sort((a, b) => Number(a.time) - Number(b.time))}
@@ -268,7 +269,7 @@ const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
                                 renderItem={({ item, index }) => (
                                     <View style={styles.taskTextContainer}>
                                         <View style={{ display: "flex", flexDirection: "row", gap: width / 20 }}>
-                                            <TouchableOpacity style={styles.radioButton} onPress={() => !item.done}>
+                                            <TouchableOpacity style={styles.radioButton} onPress={() => item.done = (!item.done)}>
                                                 {item.done && <View style={[styles.radioButton, {
                                                     width: Dimensions.get('window').width * 0.015,
                                                     height: Dimensions.get('window').width * 0.015,

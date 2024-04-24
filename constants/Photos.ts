@@ -10,4 +10,6 @@ export default {
   WorkIcon: require('../photos/icons/Work.png'),
   //Tasks
   UserProfile: require('../photos/Tasks/UserProfile.jpeg'),
+  //HomePage
+  HomePageHero: require('../photos/HomePage/Hero.png'),
 };
