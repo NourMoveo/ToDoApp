@@ -5,6 +5,7 @@ import Colors from "../constants/Colors";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Home from "../screens/Home";
+import Tasks from "../screens/Tasks";
 
 import { RootStackParamList } from "../types";
 
@@ -36,6 +37,7 @@ function RootNavigator() {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Tasks" component={Tasks} />
         </Stack.Navigator>
     );
 }

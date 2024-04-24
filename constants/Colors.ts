@@ -4,15 +4,19 @@ const dark = '#626262';
 const blue = '#1F41BB';
 const gray = '#ECECEC';
 const lightBlue = '#f1f4ff';
-
+const midLightBlue = '#55a7c8';
+const lightGray = '#fcfcfc';
 export default {
   darkText: dark,
   text: black,
   background: white,
-  primary: blue,
+  primary: midLightBlue,
   onPrimary: white,
   active: blue,
   borderWithOpacity: '#1f41bb',
   lightPrimary: lightBlue,
   gray: gray,
+  textWithBackground: white,
+  textBackground: midLightBlue,
+  lightGray: lightGray,
 };
