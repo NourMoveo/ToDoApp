@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
-import Colors from '../constants/Colors'; // Corrected import
-import { RootStackParamList } from '../types';
-import { NativeStackScreenProps } from '@react-navigation/native-stack'; // Corrected import
+import Routes from '../constants/Routes';
+import Colors from '../constants/Colors';
+import { RootStackParamList } from '../../types';
+import { NativeStackScreenProps } from 'react-native-screens/lib/typescript/native-stack/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Settings">;
 
@@ -15,20 +16,12 @@ const Settings: React.FC<Props> = ({ navigation }) => {
                 alignItems: 'center',
                 backgroundColor: Colors.primary,
             }}>
-            <Text>Settings</Text>
-
+            <Text>Settings Detail</Text>
             <TouchableOpacity
-                onPress={() => navigation.navigate('SettingsDetails')}
+                onPress={() => navigation.goBack()}
                 style={styles.button}
                 activeOpacity={0.8}>
-                <Text style={styles.buttonText}>Go To Settings Detail</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Home')}
-                style={styles.button}
-                activeOpacity={0.8}>
-                <Text style={styles.buttonText}>Log out</Text>
+                <Text style={styles.buttonText}>Go Back</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );

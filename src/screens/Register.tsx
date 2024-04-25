@@ -11,7 +11,7 @@ import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types";
+import { RootStackParamList } from "../../types";
 import AppTextInput from "../components/AppTextInput";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Register">;

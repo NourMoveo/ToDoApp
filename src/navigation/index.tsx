@@ -6,11 +6,12 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Home from "../screens/Home";
 import Tasks from "../screens/Tasks";
-import { RootStackParamList } from "../types";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { RootStackParamList } from "../../types";
+import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, Text, View } from "react-native";
 import FontSize from "../constants/FontSize";
-
+import Photos from "../constants/Photos";
+import CustomBottomTab from "../components/BottomTabs/CustomBottomTab";
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -40,42 +41,29 @@ function RootNavigator() {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Tasks" component={Tasks} />
+            <Stack.Screen name="Tasks" component={BottomTabsNavigator} />
         </Stack.Navigator>
     );
 }
-
+const CustomBottomTabs = (props: BottomTabBarProps
+) => {
+    return <CustomBottomTab {...props} />;
+};
 export function BottomTabsNavigator() {
     return (
         <Tab.Navigator
+            tabBar={CustomBottomTabs}
             initialRouteName="Tasks" screenOptions={{
                 headerShown: false,
-            }}>
+            }} >
             <Tab.Screen
                 name="Tasks"
-                component={RootNavigator}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Image style={{ width: "10%", height: "10%" }} source={require('../photos/HomePage/Hero.png')} />
-                            <Text style={styles.tabsText}>Home</Text>
-                        </View>
-                    ),
-                }
-                }
+                component={Tasks}
             />
             <Tab.Screen
-                name="Home"
-                component={RootNavigator}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ display: 'flex', justifyContent: 'center' }}>
-                            {/* <Image source={require('../photos/TasksIcon.png')} /> */}
-                            <Text style={styles.tabsText}>Tasks</Text>
-                        </View>
-                    ),
-                }}
+                name="Home" component={Home}
             />
+
         </Tab.Navigator>
     );
 }
@@ -83,8 +71,8 @@ export function BottomTabsNavigator() {
 
 const styles = StyleSheet.create({
     tabsText: {
-        fontFamily: "poppins-semiBold",
-        fontSize: FontSize.medium,
+        fontFamily: "poppins",
+        fontSize: FontSize.xSmall,
         maxWidth: "50%",
         textAlign: "left",
     },

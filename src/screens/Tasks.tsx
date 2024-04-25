@@ -17,14 +17,14 @@ import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Photos from "../constants/Photos";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types";
+import { RootStackParamList } from "../../types";
 import Tasks from "../mockData/Tasks";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomTabsNavigator } from "../navigation";
 const { height, width } = Dimensions.get("window");
 
 type Props = NativeStackScreenProps<RootStackParamList, "Tasks">;
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootStackParamList>();
 const TasksPage: React.FC<Props> = ({ navigation: { navigate } }) => {
     const styles = StyleSheet.create({
         container: {

@@ -8,6 +8,7 @@ export default {
   ShoppingIcon: require('../photos/icons/Shopping.png'),
   WhiteArrowIcon: require('../photos/icons/WhiteArrow.png'),
   WorkIcon: require('../photos/icons/Work.png'),
+  TasksIcon: require('../photos/icons/Tasks.png'),
   //Tasks
   UserProfile: require('../photos/Tasks/UserProfile.jpeg'),
   //HomePage
